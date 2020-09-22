@@ -24,6 +24,7 @@
                 <form method="post" action="{{route('deleteschool')}}">
                   @csrf
                   <input type="text" id="reg_id" name="reg_id" hidden>
+                  
                   <input class="btn btn-success" type="submit" value="submit" name="submit">
                 </form>
             </div>
