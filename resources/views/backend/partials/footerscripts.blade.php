@@ -115,5 +115,12 @@ var myPieChart = new Chart(ctx, {
         });
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCURCbYEluowlwd2_bl2sMjh5UZaDJFGsU&callback=initMap"
-async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCURCbYEluowlwd2_bl2sMjh5UZaDJFGsU&callback=initMap"async defer></script>
+
+<script>
+  $('.deleteschool').click(function(){
+    var id= $(this).data('id');
+    $('#deleteModal').modal();
+    $('#reg_id').val(id);
+  });
+</script>

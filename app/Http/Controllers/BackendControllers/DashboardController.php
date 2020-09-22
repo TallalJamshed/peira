@@ -8,6 +8,10 @@ use DB;
 
 class DashboardController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $count['totalschool'] = DB::table('general_information')->count();

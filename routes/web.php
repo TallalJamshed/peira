@@ -15,16 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login');
 // ---------------------------------// BACKEND // ---------------------------------//
-Route::get('/dash' , 'BackendControllers\DashboardController@index')->name('dashboard');
+Route::get('/dashboard' , 'BackendControllers\DashboardController@index')->name('dashboard');
 Route::get('/school/new' , 'BackendControllers\SchoolController@showNewSchools')->name('shownewschools');
 Route::get('/school/edit/{id}' , 'BackendControllers\SchoolController@editSchools')->name('editschool');
+Route::post('/deletechool' , 'BackendControllers\SchoolController@deleteSchools')->name('deleteschool');
 
 Route::post('/getschools' , 'BackendControllers\SchoolController@getSchools')->name('getschools');
 
 
-Auth::routes(['register'=>true]);
+Auth::routes(['register'=>false]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -16,6 +16,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>School ID</th>
                             <th>School Name</th>
                             <th>Head Name</th>
                             <th>School Level</th>
@@ -25,19 +26,17 @@
                     <tbody>
                         @foreach ($schools as $school)
                         <tr>
+                            <td>{{$school->reg_id}}</td>
                             <td>{{$school->inst_name}}</td>
                             <td>{{$school->inst_head_name}}</td>
                             <td>{{$school->teaching_level}}</td>
                             <td>
-                                <button class="btn btn-sm btn-danger">
+                                <button class="btn btn-sm btn-danger deleteschool" data-id="{{$school->reg_id}}">
                                     <i class="fa fa-trash"></i>
                                 </button>
                                 <a class="btn btn-sm btn-warning" href="{{route('editschool',$school->reg_id)}}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <button class="btn btn-sm btn-success">
-                                    <i class="fa fa-trash"></i>
-                                </button>
                             </td>
                         </tr>
                         @endforeach

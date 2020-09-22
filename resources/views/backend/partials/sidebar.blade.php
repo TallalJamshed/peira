@@ -37,7 +37,6 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">School Related Functions:</h6>
           <a class="collapse-item" href="{{route('shownewschools')}}">Show All Schools</a>
-          <a class="collapse-item" href="">Edit Schools</a>
         </div>
       </div>
     </li>
