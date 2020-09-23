@@ -69,7 +69,7 @@
                                                 <div class="col-md-12 note" style="color:green; background-color:rgb(195, 255, 195)">
                                                     <h6>{{session('response')->first()}}
                                                         If Download does not start automatically please 
-                                                        <u><span style="color: black" id="file_download" data-url="{{env('APP_URL').'/storage/schoolpdf'.'/'.session('file')}}">Click This Link</a></u>.
+                                                        <u><span style="color: black" id="file_download" data-url="{{'Http://localhost/peiraadmin/storage/schoolpdf/'.session('file')}}">Click This Link</a></u>.
                                                     </h6>
                                                 </div>
                                                 @endif

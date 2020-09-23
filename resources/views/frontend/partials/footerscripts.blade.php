@@ -61,7 +61,7 @@
     </script>
     <script>
         function download(url){
-            window.location = url;
+            window.open(url, '_blank');
         };
         $(document).ready(function(){
             if($('#file_download').data('url')){

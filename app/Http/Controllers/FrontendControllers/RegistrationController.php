@@ -652,18 +652,5 @@ class RegistrationController extends Controller
         $pdf = PDF2::loadView('frontend.templates.pdftemplate', ['data'=>$data]);
         $pdf->save($filepath);
         return $filename;
-        // $size = Storage::disk('pdf')->size('/'.$filename);
-        // $headers = [
-        //     'Content-Type' => 'application/pdf',
-        //     'Content-Disposition' => 'attachment',
-        //     'Content-Length' => $size,
-        // ];
-        // $file = response()->download($filepath, $filename, $headers);
-        // return $file;
-        // return download(storage_path('schoolpdf').'/'.$id.'_PEIRA Registration Preview.pdf',);
-        // return $pdf->download($id.'_PEIRA Registration Preview.pdf');
-        // $pdf = PDF::loadHTML($html)->setPaper('a4', 'landscape')
-        // $pdf = PDF::loadView('frontend.templates.pdftemplate', ['data'=>$data])->setPaper('a4', 'portrait');
-        // return $pdf->stream();
     }
 }
