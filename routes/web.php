@@ -21,6 +21,7 @@ Route::get('/dashboard' , 'BackendControllers\DashboardController@index')->name(
 Route::get('/school/new' , 'BackendControllers\SchoolController@showNewSchools')->name('shownewschools');
 Route::get('/school/edit/{id}' , 'BackendControllers\SchoolController@editSchools')->name('editschool');
 Route::post('/deletechool' , 'BackendControllers\SchoolController@deleteSchools')->name('deleteschool');
+Route::post('/updateschool' , 'BackendControllers\SchoolController@updateSchool')->name('updateschool');
 
 Route::post('/getschools' , 'BackendControllers\SchoolController@getSchools')->name('getschools');
 

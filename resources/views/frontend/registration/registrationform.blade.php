@@ -958,7 +958,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="tab-pane fade" id="nav-overallstrength" role="tabpanel"
