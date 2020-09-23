@@ -74,4 +74,15 @@
             };
         });
     </script>
+
+    <script>
+        $('#form-sub').click(function(e){
+            e.preventDefault();
+            
+            $('#savemodal').modal();
+        });
+        $('#saveform').click(function(){
+            $('#regform').submit();
+        });
+    </script>
     

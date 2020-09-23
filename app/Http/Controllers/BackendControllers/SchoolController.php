@@ -37,9 +37,22 @@ class SchoolController extends Controller
 
     public function updateSchool(Request $request)
     {
-    // dd($request->fk_reg_id);
-    $gen_info = DB::table('general_information')->where('reg_id', $request->reg_id)
-        ->update(
+        // dd($request);
+
+        $request->auditorium == 'on' ?  $auditorium = 1 : $auditorium = 0;
+        $request->tutorial_room == 'on' ?  $tutorial_room = 1 : $tutorial_room = 0;
+        $request->conference_room == 'on' ?  $conference_room = 1 : $conference_room = 0;
+        $request->exam_hall == 'on' ?  $exam_hall = 1 : $exam_hall = 0;
+        $request->ground_sports_room == 'on' ?  $ground_sports_room = 1 : $ground_sports_room = 0;
+        $request->sports_room == 'on' ?  $sports_room = 1 : $sports_room = 0;
+
+        $gen_info = DB::table('general_information')->where('reg_id', $request->reg_id)->first();
+        if($gen_info->reg_id){
+            $gen_info = DB::table('general_information')->where('reg_id', $request->reg_id)
+                    ->updateOrInsert(
+        [
+            'reg_id' => $request->reg_id,
+        ],
         [
             'fk_school_id' => $request->fk_school_id,
             'inst_name' => $request->inst_name,
@@ -59,14 +72,19 @@ class SchoolController extends Controller
             'inst_head_name' => $request->inst_head_name,
             'head_phone' => $request->head_phone,
             'head_fax' => $request->head_fax,
-            'head_email' => $request->head_email
+            'head_email' => $request->head_email,
+            'status_reg' => $request->status_reg,
+            'status_since' => $request->status_since,
         ]);
 
         $public_disc = DB::table('transparency_public_disclosure')->where('fk_reg_id', $request->reg_id)
-        ->update(
+                    ->updateOrInsert(
+            [
+                'fk_reg_id' => $request->reg_id,
+            ],
             [
                 'fee_struc_policy' => $request->fee_struc_policy,
-                // 'fk_reg_id' => $request->last_id,
+                'fk_reg_id' => $request->reg_id,
                 'scholarship_policy' => $request->scholarship_policy,
                 'other_source_of_income' => $request->other_source_of_income,
                 'income_expenditure_record' => $request->income_expenditure_record,
@@ -78,23 +96,29 @@ class SchoolController extends Controller
             ]);
 
             $gross_area = DB::table('gross_area_building')->where('fk_reg_id', $request->reg_id)
-            ->update(
+                        ->updateOrInsert(
+                [
+                    'fk_reg_id' => $request->reg_id,
+                ],
                 [
                     'type_of_building' => $request->type_of_building, 
                     'property_status' => $request->property_status, 
                     'total_area' => $request->total_area, 
                     'no_of_clasrooms' => $request->no_of_clasrooms,
-                    // 'auditorium' => $request->auditorium,
-                    // 'tutorial_room' => $request->tutorial_room,
-                    // 'conference_room' => $request->conference_room,
-                    // 'exam_hall' => $request->exam_hall,
-                    // 'ground_sports_room' => $request->ground_sports_room,
-                    // 'sports_room' => $request->sports_room,
-                    // 'fk_reg_id' => $request->last_id
+                    'auditorium' => $auditorium,
+                    'tutorial_room' => $tutorial_room,
+                    'conference_room' => $conference_room,
+                    'exam_hall' => $exam_hall,
+                    'ground_sports_room' => $ground_sports_room,
+                    'sports_room' => $sports_room,
+                    'fk_reg_id' => $request->reg_id
                 ]);
 
                 $inst_labs = DB::table('institute_labs')->where('fk_reg_id', $request->reg_id)
-                ->update(
+                        ->updateOrInsert(
+                    [
+                        'fk_reg_id' => $request->reg_id,
+                    ],        
                     [
                         'lib_reference_books' => $request->lib_reference_books,
                         'lib_subscription' => $request->lib_subscription,
@@ -107,11 +131,14 @@ class SchoolController extends Controller
                         'lab_available_staff' => $request->lab_available_staff,
                         'lab_available_equipments' => $request->lab_available_equipments,
                         'lab_installed_safety_equipments' => $request->lab_installed_safety_equipments,
-                        // 'fk_reg_id' => $last_id
+                        'fk_reg_id' => $request->reg_id
                     ]);
 
                     $curriculum_assessment = DB::table('curriculum_assessment')->where('fk_reg_id', $request->reg_id)
-                    ->update(
+                            ->updateOrInsert(
+                        [
+                            'fk_reg_id' => $request->reg_id,
+                        ],
                         [
                             'pre_school_curriculum_type' => $request->pre_school_curriculum_type,
                             'pre_school_exam_board' => $request->pre_school_exam_board,
@@ -134,11 +161,14 @@ class SchoolController extends Controller
                             'advanced_level1_2_curriculum_type' => $request->advanced_level1_2_curriculum_type, 
                             'advanced_level1_2_exam_board' => $request->advanced_level1_2_exam_board,
                             'advanced_level1_2_inst_nep' => $request->advanced_level1_2_inst_nep,
-                            // 'fk_reg_id' => $last_id
+                            'fk_reg_id' => $request->reg_id
                         ]);
 
                         $faculty_strength = DB::table('faculty_strength')->where('fk_reg_id', $request->reg_id)
-                        ->update(
+                                    ->updateOrInsert(
+                            [
+                                'fk_reg_id' => $request->reg_id,
+                            ],
                             [
                                 'grad_male' => $request->grad_male, 
                                 'grad_female' => $request->grad_female,
@@ -164,11 +194,14 @@ class SchoolController extends Controller
                                 'overall_male' => $request->overall_male, 
                                 'overall_female' => $request->overall_female, 
                                 'overall_total' => $request->overall_total,
-                                // 'fk_reg_id' => $last_id
+                                'fk_reg_id' => $request->reg_id
                             ]);
 
                             $student_strength = DB::table('student_strength')->where('fk_reg_id', $request->reg_id)
-                            ->update(
+                                                ->updateOrInsert(
+                                [
+                                    'fk_reg_id' => $request->reg_id,
+                                ],
                                 [
                                     'pre_school_male' => $request->pre_school_male, 
                                     'pre_school_female' => $request->pre_school_female,
@@ -205,8 +238,19 @@ class SchoolController extends Controller
                                     'advanced_level1_2_total' => $request->advanced_level1_2_total, 
                                     'advanced_level1_2_str' => $request->advanced_level1_2_str,
                                     'advanced_level1_2_curriculum_type2' => $request->advanced_level1_2_curriculum_type2, 
-                                    // 'fk_reg_id' => $last_id
+                                    'fk_reg_id' => $request->reg_id
                                 ]);
+            if($gen_info || $public_disc || $gross_area || $inst_labs || $student_strength || $faculty_strength || $curriculum_assessment){
+                Session::flash("alert-class","bg-success");
+                Session::flash("message","School is updated successfully !");
+                return redirect()->back();
+            }else{
+                Session::flash("alert-class","bg-danger");
+                Session::flash("message","School is not updated !");
+                return redirect()->back();
+            }
+    }
+    
 
     }
 

@@ -123,4 +123,7 @@ var myPieChart = new Chart(ctx, {
     $('#deleteModal').modal();
     $('#reg_id').val(id);
   });
+  $(':input[type="number"]').keydown(function(){
+    return event.keyCode !== 69 
+  });
 </script>

@@ -15,6 +15,7 @@
         <form action="{{route('updateschool')}}" method="POST">
             @csrf
             <div class="card-body">
+                {{-- Generall Information --}}
                 <div class="row tab-box">
                     <div class="col-md-12">
                         <div class="row">
@@ -42,7 +43,7 @@
                                 <input type="number" name="reg_id" value="{{$school->reg_id}}" hidden>
                                 <label>Institutions List</label> <span
                                     style="font-size:11px; color:red;">*</span>
-                                <select name="fk_school_id" id="fk_school_id" class="form-control">
+                                <select name="fk_school_id" id="fk_school_id" class="form-control" required>
                                     <option value="{{$school->school_id}}">{{$school->school_name}}</option>
                                     @foreach ($schools as $sch)
                                     <option value="{{$sch->school_id}}">{{$sch->school_name}}
@@ -51,13 +52,18 @@
                                 </select>
                                 <br />
                             </div>
-                            <div id='inst_div' class="col-md-12" style="background-color: rgb(255, 194, 194)">
-                                {{-- code in footer scripts --}}
+                            <div id='inst_div' class="col-md-12" >
+                                <span style="color: red">In Case of other institute please enter Institute Name manually.</span>
+                                <br>
+                                <label>Name of the Institution</label> 
+                                <span style="font-size:11px; color:red;">*</span>
+                                <input type="text" id="inst_name" name="inst_name" value="{{$school->inst_name}}" placeholder="Name" class="form-control" />
+                                <br />
                             </div>
                             <div class="col-md-6">
                                 <label>Type of Institution</label> <span
                                     style="font-size:11px; color:red;">*</span>
-                                <select name="inst_type" value="" class="form-control">
+                                <select name="inst_type" value="" class="form-control" required>
                                     <option  value="{{$school->inst_type}}">{{$school->inst_type}}</option>
                                     <option value="school">School</option>
                                     <option value="college">College</option>
@@ -69,7 +75,7 @@
                             <div class="col-md-6">
                                 <label>Medium of Instruction</label> <span
                                     style="font-size:11px; color:red;">*</span>
-                                <select name="medium_of_instruction" value="" class="form-control">
+                                <select name="medium_of_instruction" value="" class="form-control" required>
                                     <option value="{{$school->medium_of_instruction}}">{{$school->medium_of_instruction}}</option>
                                     <option value="urdu">Urdu</option>
                                     <option value="english">English</option>
@@ -80,7 +86,7 @@
                             <div class="col-md-12">
                                 <label>Teaching Level</label> <span
                                     style="font-size:11px; color:red;">*</span>
-                                <select name="teaching_level"  class="form-control">
+                                <select name="teaching_level"  class="form-control" required>
                                     <option value="{{$school->teaching_level}}">{{$school->teaching_level}}</option>
                                     <option value="junior">Junior School</option>
                                     <option value="primary">Primary</option>
@@ -93,63 +99,66 @@
                                 <label>Union Council</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="text" name="union_council" value="{{$school->union_council}}"
-                                    placeholder="Union Council" class="form-control" /><br />
+                                    placeholder="Union Council" class="form-control" required /><br />
                             </div>
                             <div class="col-md-3">
                                 <label>Zone/Sector</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="text" name="area" value="{{$school->area}}" placeholder="Zone/Sector"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
                             <div class="col-md-3">
                                 <label>Street</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="text" name="street" value="{{$school->street}}" placeholder="Street"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
                             <div class="col-md-3">
                                 <label>Address</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="text" name="address" value="{{$school->address}}" placeholder="Address"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
-                            <div class="col-md-4">
-                                <label><b>GPS Coordinates</b></label> <span
-                                    style="font-size:11px; color:red;">*</span>
+                            <div class="col-md-2">
+                                <label><b>GPS Coordinates</b></label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
+                                <label>Latitude</label><span
+                                style="font-size:11px; color:red;">*</span>
                                 <input type="number" min="0" step='any' name="latitude" value="{{$school->latitude}}" placeholder="Latitude"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
+                                <label>Longitude</label><span
+                                style="font-size:11px; color:red;">*</span>
                                 <input type="number" min="0" step='any' name="longitude" value="{{$school->longitude}}" placeholder="Longitude"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
                             <div class="col-md-6">
                                 <label>Official Web Address of School</label>
                                 <input type="text" name="web_address" value="{{$school->web_address}}"
                                     placeholder="Official Web Address of School/Institution"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
                             <div class="col-md-6">
                                 <label>Official E-mail Address of School/Institution</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="email" name="inst_email" value="{{$school->inst_email}}"
                                     placeholder="Official E-mail Address of School/Institution"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
 
                             <div class="col-md-6">
                                 <label>Institution Contact</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="number" min="0" name="inst_phone" value="{{$school->inst_phone}}"
-                                    placeholder="Institution Contact" class="form-control" /><br />
+                                    placeholder="Institution Contact" class="form-control" required /><br />
                             </div>
                             <div class="col-md-6">
                                 <label>Institution Fax</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="number" min="0" name="inst_fax" value="{{$school->inst_fax}}"
-                                    placeholder="Institution Fax" class="form-control" /><br />
+                                    placeholder="Institution Fax" class="form-control" required /><br />
                             </div>
 
                             <div class="col-md-12">
@@ -157,29 +166,47 @@
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="text" name="inst_head_name" value="{{$school->inst_head_name}}"
                                     placeholder="Name of Head of the Institution"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
 
                             <div class="col-md-6">
                                 <label>Landline Number</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="number" min="0" name="head_phone" value="{{$school->head_phone}}"
-                                    placeholder="Landline text" class="form-control" /><br />
+                                    placeholder="Landline text" class="form-control" required /><br />
                             </div>
                             <div class="col-md-6">
                                 <label>Fax</label> <span style="font-size:11px; color:red;">*</span>
                                 <input type="text" min="0" name="head_fax" value="{{$school->head_fax}}" placeholder="Fax"
-                                    class="form-control" /><br />
+                                    class="form-control" required /><br />
                             </div>
                             <div class="col-md-12">
                                 <label>E-mail</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <input type="email" name="head_email" value="{{$school->head_email}}" placeholder="E-mail"
+                                    class="form-control" required /><br />
+                            </div>
+                            <div class="col-md-6">
+                                <label><b>School Status:</b></label>
+                                <select name="status_reg"  class="form-control" >
+                                    <option value="{{$school->status_reg}}">{{$school->status_reg}}</option>
+                                    <option value="Applied For Renewal">Applied For Renewal</option>
+                                    <option value="Never Applied For Registration">Never Applied For Registration</option>
+                                    <option value="New Registration">New Registration</option>
+                                    <option value="Renewal">Renewal</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label><b>Status Since:</b></label>
+                                <input type="text" name="status_since" value="{{$school->status_since}}" placeholder="Status Since"
                                     class="form-control" /><br />
                             </div>
                         </div>
                     </div>
                 </div>
+                {{-- End Generall Information --}}
+
+                {{-- student and faculty strength --}}
                 <div class="row tab-box">
                     <div class="col-md-12">
                         <hr />
@@ -455,6 +482,9 @@
                         </div>
                     </div>
                 </div>
+                {{--End student and faculty strength --}}
+                
+                {{-- Curriculum & Assessments --}}
                 <div class="row tab-box">
                     <div class="col-md-12">
                         <hr />
@@ -672,6 +702,9 @@
                         </table>
                     </div>
                 </div>
+                {{-- End Curriculum & Assessments --}}
+                
+                {{-- Gross Area & Building --}}
                 <div class="row tab-box">
                     <div class="col-md-12">
                         <div class="row">
@@ -717,46 +750,48 @@
                                 <label>Please mention any other allied facilities availabale on the
                                     premises</label> <span
                                     style="font-size:11px; color:red;">*</span><br>
-                                <!-- <ul>
+                                <ul>
                                     <li>
-                                        <label class="checkbox-inline"><input type="checkbox"
-                                                name="auditorium"  @if($school->auditorium == 1){
-                                                                                checked='checked'
-                                                                            @endif>Auditorium</label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="auditorium"   
+                                                @if(isset($school->auditorium) && $school->auditorium == 1){
+                                                    checked='checked'
+                                                @endif>Auditorium
+                                            </label>
                                     </li>
                                     <li>
                                         <label class="checkbox-inline"><input type="checkbox"
-                                                name="conference_room" @if($school->conference_room == 1){
+                                                name="conference_room" @if(isset($school->conference_room) && $school->conference_room == 1){
                                                                                 checked='checked'
                                                                             @endif>Conference
                                                                                         Room</label>
                                     </li>
                                     <li>
                                         <label class="checkbox-inline"><input type="checkbox"
-                                                name="tutorial_room" @if($school->tutorial_room == 1){
+                                                name="tutorial_room" @if(isset($school->tutorial_room) && $school->tutorial_room == 1){
                                                                                 checked='checked'
                                                                             @endif>Tutorial Rooms</label>
                                     </li>
                                     <li>
                                         <label class="checkbox-inline"><input type="checkbox"
-                                                name="exam_hall" @if($school->exam_hall == 1){
+                                                name="exam_hall" @if(isset($school->exam_hall) && $school->exam_hall == 1){
                                                                         checked='checked'
                                                                     @endif >Examination Halls</label>
                                     </li>
                                     <li>
                                         <label class="checkbox-inline"><input type="checkbox"
-                                                name="ground_sports_room" @if($school->ground_sports_room == 1){
+                                                name="ground_sports_room" @if(isset($school->ground_sports_room) && $school->ground_sports_room == 1){
                                                                                     checked='checked'
                                                                                 @endif>Sports Grounds
                                         </label>
                                     </li>
                                     <li>
                                         <label class="checkbox-inline"><input type="checkbox"
-                                                name="sports_room" @if($school->sports_room == 1){
+                                                name="sports_room" @if(isset($school->sports_room) && $school->sports_room == 1){
                                                                         checked='checked'
                                                                     @endif>Sports Rooms</label>
                                     </li>
-                                </ul><br /> -->
+                                </ul><br /> 
                             </div>
                         </div>
                         <hr>
@@ -834,6 +869,9 @@
                         </div>
                     </div>
                 </div>
+                {{--End Gross Area & Building --}}
+
+                {{-- Transperency and public disclosure --}}
                 <div class="row tab-box">
                     <div class="col-md-12">
                         <table class="table table-hover">
@@ -935,6 +973,9 @@
                         </table>
                     </div>
                 </div>
+                {{-- End Transperency and public disclosure --}}
+
+                {{-- Overall faculty strength --}}
                 <div class="row tab-box">
                     <div class="col-md-12">
                     <hr />
@@ -959,6 +1000,8 @@
                             name="extra_curricular_facilities"  id="" cols="4" rows="4">{{$school->extra_curricular_facilities}}</textarea>
                     </div>
                 </div>
+                {{--End Overall faculty strength --}}
+
                 <div class="col-md-12" style="    margin-top: 0%;">
                     <input type="submit" name="submit" style="float:right;"
                         class="btn btn-success" value="Submit Form" />
