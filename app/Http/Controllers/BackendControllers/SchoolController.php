@@ -207,6 +207,7 @@ class SchoolController extends Controller
                                     'advanced_level1_2_curriculum_type2' => $request->advanced_level1_2_curriculum_type2, 
                                     // 'fk_reg_id' => $last_id
                                 ]);
+                return redirect()->back();
 
     }
 
