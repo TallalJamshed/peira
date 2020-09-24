@@ -137,7 +137,7 @@ var myPieChart = new Chart(ctx, {
       }else if(status_name == "Applied For Renewal")
       { 
         $('#status_reg_div').empty()
-          $('#status_reg_div').append('<span style="color: red"></span><br><label>Date of application submission</label> <span style="font-size:11px; color:red;">*</span><input type="date" id="" name="date_of_app_submit" value="@isset($school){{$school->date_of_app_submit}}@endisset" placeholder="Date of Application Submission" class="form-control" required/><br />');
+          $('#status_reg_div').append('<span style="color: red"></span><br><label>Date of application submission</label> <span style="font-size:11px; color:red;">*</span><input type="date" id="" name="date_of_app_submit" value="@isset($school){{$school->date_of_app_submit}}@endisset" placeholder="Date of Application Submission" class="form-control col-md-6" required/><br />');
       }
       else if(status_name == "Never Applied For Registration")
       {
@@ -146,7 +146,7 @@ var myPieChart = new Chart(ctx, {
       else if(status_name == "New Registration")
       {
         $('#status_reg_div').empty()
-          $('#status_reg_div').append('<span style="color: red"></span><br><label>Date of application submission</label> <span style="font-size:11px; color:red;">*</span><input type="date" id="" name="date_of_app_submit" value="@isset($school){{$school->date_of_app_submit}}@endisset" placeholder="Date of Application Submission" class="form-control" required/><br />');
+          $('#status_reg_div').append('<span style="color: red"></span><br><label>Date of application submission</label> <span style="font-size:11px; color:red;">*</span><input type="date" id="" name="date_of_app_submit" value="@isset($school){{$school->date_of_app_submit}}@endisset" placeholder="Date of Application Submission" class="form-control col-md-6" required/><br />');
       }
       else if(status_name == "Registration expired before 5 years")
       {        

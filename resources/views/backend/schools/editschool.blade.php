@@ -10,7 +10,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary text-capitalize">Edit {{$school->inst_name}}</h6>
+            <h6 class="m-0 font-weight-bold text-primary text-capitalize">Edit @if(!empty($school->inst_name)){{$school->inst_name}}@else {{$school->school_name}}@endif</h6>
         </div>
         <form action="{{route('updateschool')}}" method="POST">
             @csrf
@@ -38,9 +38,11 @@
                                 </h6>
                             </div>
                             @endif
-                            
+                            <input type="number" name="reg_id" value="{{$school->reg_id}}" hidden>
+                            <input type="number" name="fk_school_id" value="{{$school->fk_school_id}}" hidden>                            
+                            <input type="text" name="inst_name" value="{{$school->inst_name}}" hidden>                            
+
                             <!-- <div class="col-md-12">
-                                <input type="number" name="reg_id" value="{{$school->reg_id}}" hidden>
                                 <label>Institutions List</label> <span
                                     style="font-size:11px; color:red;">*</span>
                                 <select name="fk_school_id" id="fk_school_id" class="form-control" required>

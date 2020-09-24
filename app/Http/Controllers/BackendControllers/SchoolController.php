@@ -49,6 +49,7 @@ class SchoolController extends Controller
 
 
         $gen_info = DB::table('general_information')->where('reg_id', $request->reg_id)->first();
+        // dd($request);
         if($gen_info->reg_id){
             $gen_info = DB::table('general_information')->where('reg_id', $request->reg_id)
                     ->updateOrInsert(
