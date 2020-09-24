@@ -61,7 +61,7 @@
     </script>
     <script>
         function download(url){
-            window.location = url;
+            window.open(url, '_blank');
         };
         $(document).ready(function(){
             if($('#file_download').data('url')){
@@ -72,6 +72,17 @@
             if($('#file_download').data('url')){
                 download($('#file_download').data('url'));
             };
+        });
+    </script>
+
+    <script>
+        $('#form-sub').click(function(e){
+            e.preventDefault();
+            
+            $('#savemodal').modal();
+        });
+        $('#saveform').click(function(){
+            $('#regform').submit();
         });
     </script>
     

@@ -123,4 +123,47 @@ var myPieChart = new Chart(ctx, {
     $('#deleteModal').modal();
     $('#reg_id').val(id);
   });
+  $(':input[type="number"]').keydown(function(){
+    return event.keyCode !== 69 
+  });
+</script>
+<script>
+  function checkFormStatus(){
+      var status_name = $('#status_reg').find(':selected').val();
+      if(status_name == "Registered")
+      {
+        $('#status_reg_div').empty()
+        $('#status_reg_div').append('<div class="one" style="width:50%"><span style="color: red"></span><br><label>Registration Number</label> <span style="font-size:11px; color:red;">*</span><input type="text" id="" name="form_reg_no" value="@isset($school){{$school->form_reg_no}}@endisset" placeholder="Registration Number" class="col-md-6 form-control" required/></div><div class="two" style="float:right; width:50%; margin-top:-70px"> <label>Expiry Date</label> <span style="font-size:11px; color:red;">*</span><input type="date" id="" name="expiry_date" value="@isset($school){{$school->expiry_date}}@endisset" placeholder="Expiry Date" class="col-md-6 form-control" required/></div><br />');
+      }else if(status_name == "Applied For Renewal")
+      { 
+        $('#status_reg_div').empty()
+          $('#status_reg_div').append('<span style="color: red"></span><br><label>Date of application submission</label> <span style="font-size:11px; color:red;">*</span><input type="date" id="" name="date_of_app_submit" value="@isset($school){{$school->date_of_app_submit}}@endisset" placeholder="Date of Application Submission" class="form-control" required/><br />');
+      }
+      else if(status_name == "Never Applied For Registration")
+      {
+        $('#status_reg_div').empty()
+      }
+      else if(status_name == "New Registration")
+      {
+        $('#status_reg_div').empty()
+          $('#status_reg_div').append('<span style="color: red"></span><br><label>Date of application submission</label> <span style="font-size:11px; color:red;">*</span><input type="date" id="" name="date_of_app_submit" value="@isset($school){{$school->date_of_app_submit}}@endisset" placeholder="Date of Application Submission" class="form-control" required/><br />');
+      }
+      else if(status_name == "Registration expired before 5 years")
+      {        
+          $('#status_reg_div').empty();
+          $('#status_reg_div').append('<label>Expiry Date</label> <span style="font-size:11px; color:red;">*</span><input type="date" id="" name="expiry_date" value="@isset($school){{$school->expiry_date}}@endisset" placeholder="Expiry Date" class="col-md-6 form-control" required/><br>');
+      }
+      else
+      {
+          $('#status_reg_div').empty();
+      }
+  }
+  
+  $('#status_reg').change(function(){
+    checkFormStatus();
+  });
+
+  $(document).ready(function(){
+    checkFormStatus();
+  });
 </script>

@@ -20,6 +20,8 @@ class RegistrationController extends Controller
 
     public function saveRegForm(Request $request)
     {
+        dd($request);
+
         // $file = '115_PEIRA_Registration_Preview.pdf';
         // $response['form_success'] = 'Form is saved and pdf is generated.';
         // dd($file,$success);
@@ -282,11 +284,18 @@ class RegistrationController extends Controller
             if(isset($request->no_of_clasrooms)){
                 $no_of_clasrooms = $request->no_of_clasrooms;
             }
-
+            if(isset($request->no_of_washrooms)){
+                $no_of_washrooms = $request->no_of_washrooms;
+            }
             if(isset($request->auditorium) ){
                 $auditorium = 1;
             }else{
                 $auditorium = 0;
+            }
+            if(isset($request->canteen) ){
+                $canteen = 1;
+            }else{
+                $canteen = 0;
             }
             if(isset($request->tutorial_room)){
                 $tutorial_room = 1;
@@ -455,17 +464,21 @@ class RegistrationController extends Controller
                                 'extra_curricular_facilities' => $extra_curricular_facilities 
                             ]);
                     }
-                    if(!empty($type_of_building) || !empty($property_status) || !empty($total_area) || !empty($no_of_clasrooms) 
-                        || !empty($auditorium) || !empty($tutorial_room) || !empty($conference_room) || !empty($exam_hall) 
+                    if(!empty($type_of_building) || !empty($property_status) || !empty($total_area) || !empty($no_of_clasrooms) || !empty($no_of_washrooms) 
+                        || !empty($auditorium) || !empty($canteen)  || !empty($tutorial_room) || !empty($conference_room) || !empty($exam_hall) 
                         || !empty($ground_sports_room) || !empty($sports_room))
                     {
+
                         $gross_area = DB::table('gross_area_building')->insert(
                             [
+
                                 'type_of_building' => $type_of_building, 
                                 'property_status' => $property_status, 
                                 'total_area' => $total_area, 
                                 'no_of_clasrooms' => $no_of_clasrooms,
+                                'no_of_washrooms' => $no_of_washrooms,
                                 'auditorium' => $auditorium,
+                                'canteen' => $canteen,
                                 'tutorial_room' => $tutorial_room,
                                 'conference_room' => $conference_room,
                                 'exam_hall' => $exam_hall,
@@ -652,18 +665,5 @@ class RegistrationController extends Controller
         $pdf = PDF2::loadView('frontend.templates.pdftemplate', ['data'=>$data]);
         $pdf->save($filepath);
         return $filename;
-        // $size = Storage::disk('pdf')->size('/'.$filename);
-        // $headers = [
-        //     'Content-Type' => 'application/pdf',
-        //     'Content-Disposition' => 'attachment',
-        //     'Content-Length' => $size,
-        // ];
-        // $file = response()->download($filepath, $filename, $headers);
-        // return $file;
-        // return download(storage_path('schoolpdf').'/'.$id.'_PEIRA Registration Preview.pdf',);
-        // return $pdf->download($id.'_PEIRA Registration Preview.pdf');
-        // $pdf = PDF::loadHTML($html)->setPaper('a4', 'landscape')
-        // $pdf = PDF::loadView('frontend.templates.pdftemplate', ['data'=>$data])->setPaper('a4', 'portrait');
-        // return $pdf->stream();
     }
 }
